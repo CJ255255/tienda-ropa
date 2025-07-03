@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tienda de Ropa con Carrito</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #e79292;
+    }
+    header {
+      background-color: #222;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .productos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+    .producto {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin: 15px;
+      padding: 15px;
+      width: 220px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .producto img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    .producto h3 {
+      margin: 10px 0 5px;
+    }
+    .producto p {
+      color: #555;
+    }
+    .tallas button {
+      margin: 5px 3px;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      background-color: #eee;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+    .tallas button.selected {
+      background-color: #222;
+      color: white;
+    }
+    .cantidad {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .cantidad button {
+      padding: 5px 10px;
+      font-size: 16px;
+      margin: 0 5px;
+      border: none;
+      background-color: #ccc;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+    .cantidad input {
+      width: 40px;
+      text-align: center;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    .producto button.agregar {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    #carrito {
+      background-color: white;
+      margin: 30px auto;
+      max-width: 600px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    #carrito h2 {
+      margin-top: 0;
+    }
+    .carrito-item {
+      border-bottom: 1px solid #eee;
+      padding: 10px 0;
+    }
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>MININO FASHION</h1>
+</header>
+
+<section class="productos">
+  <div class="producto" data-nombre="Camisa Blanca" data-precio="20.00">
+    <img src="https://via.placeholder.com/200x250?text=Camisa+1" alt="Camisa Blanca" />
+    <h3>Camisa Blanca</h3>
+    <p>$20.00</p>
+    <div class="tallas">
+      <strong>Talla:</strong><br />
+      <button onclick="seleccionarTalla(this)">S</button>
+      <button onclick="seleccionarTalla(this)">M</button>
+      <button onclick="seleccionarTalla(this)">L</button>
+      <button onclick="seleccionarTalla(this)">XL</button>
+    </div>
+    <div class="cantidad">
+      <button onclick="cambiarCantidad(this, -1)">-</button>
+      <input type="text" value="0" readonly />
+      <button onclick="cambiarCantidad(this, 1)">+</button>
+    </div>
+    <button class="agregar" onclick="agregarAlCarrito(this)">Agregar al carrito</button>
+  </div>
+
+  <div class="producto" data-nombre="Camisa Azul" data-precio="22.00">
+    <img src="https://via.placeholder.com/200x250?text=Camisa+2" alt="Camisa Azul" />
+    <h3>Camisa Azul</h3>
+    <p>$22.00</p>
+    <div class="tallas">
+      <strong>Talla:</strong><br />
+      <button onclick="seleccionarTalla(this)">S</button>
+      <button onclick="seleccionarTalla(this)">M</button>
+      <button onclick="seleccionarTalla(this)">L</button>
+      <button onclick="seleccionarTalla(this)">XL</button>
+    </div>
+    <div class="cantidad">
+      <button onclick="cambiarCantidad(this, -1)">-</button>
+      <input type="text" value="0" readonly />
+      <button onclick="cambiarCantidad(this, 1)">+</button>
+    </div>
+    <button class="agregar" onclick="agregarAlCarrito(this)">Agregar al carrito</button>
+  </div>
+
+  <div class="producto" data-nombre="Pantalón Negro" data-precio="30.00">
+    <img src="https://via.placeholder.com/200x250?text=Pantalon+1" alt="Pantalón Negro" />
+    <h3>Pantalón Negro</h3>
+    <p>$30.00</p>
+    <div class="tallas">
+      <strong>Talla:</strong><br />
+      <button onclick="seleccionarTalla(this)">S</button>
+      <button onclick="seleccionarTalla(this)">M</button>
+      <button onclick="seleccionarTalla(this)">L</button>
+      <button onclick="seleccionarTalla(this)">XL</button>
+    </div>
+    <div class="cantidad">
+      <button onclick="cambiarCantidad(this, -1)">-</button>
+      <input type="text" value="0" readonly />
+      <button onclick="cambiarCantidad(this, 1)">+</button>
+    </div>
+    <button class="agregar" onclick="agregarAlCarrito(this)">Agregar al carrito</button>
+  </div>
+
+  <div class="producto" data-nombre="Vestido Rojo" data-precio="35.00">
+    <img src="https://via.placeholder.com/200x250?text=Vestido+1" alt="Vestido Rojo" />
+    <h3>Vestido Rojo</h3>
+    <p>$35.00</p>
+    <div class="tallas">
+      <strong>Talla:</strong><br />
+      <button onclick="seleccionarTalla(this)">S</button>
+      <button onclick="seleccionarTalla(this)">M</button>
+      <button onclick="seleccionarTalla(this)">L</button>
+      <button onclick="seleccionarTalla(this)">XL</button>
+    </div>
+    <div class="cantidad">
+      <button onclick="cambiarCantidad(this, -1)">-</button>
+      <input type="text" value="0" readonly />
+      <button onclick="cambiarCantidad(this, 1)">+</button>
+    </div>
+    <button class="agregar" onclick="agregarAlCarrito(this)">Agregar al carrito</button>
+  </div>
+</section>
+
+<section id="carrito">
+  <h2>🛒 Carrito</h2>
+  <div id="items"></div>
+  <p><strong>Total: $<span id="total">0.00</span></strong></p>
+</section>
+
+<footer>
+  <p>© 2025 Tienda de Ropa Virtual - Todos los derechos reservados.</p>
+</footer>
+
+<script>
+  function seleccionarTalla(btn) {
+    const botones = btn.parentElement.querySelectorAll("button");
+    botones.forEach(b => b.classList.remove("selected"));
+    btn.classList.add("selected");
+  }
+
+  function cambiarCantidad(btn, cambio) {
+    const input = btn.parentElement.querySelector("input");
+    let valor = parseInt(input.value);
+    valor += cambio;
+    if (valor < 0) valor = 0;
+    input.value = valor;
+  }
+
+  function agregarAlCarrito(btn) {
+    const producto = btn.parentElement;
+    const nombre = producto.dataset.nombre;
+    const precio = parseFloat(producto.dataset.precio);
+    const tallaBtn = producto.querySelector(".tallas button.selected");
+    const cantidad = parseInt(producto.querySelector(".cantidad input").value);
+
+    if (!tallaBtn) {
+      alert("Selecciona una talla.");
+      return;
+    }
+
+    if (cantidad <= 0) {
+      alert("Selecciona una cantidad válida.");
+      return;
+    }
+
+    const talla = tallaBtn.textContent;
+    const totalProducto = (precio * cantidad).toFixed(2);
+
+    const itemHTML = `
+      <div class="carrito-item">
+        <p><strong>${nombre}</strong> - Talla: ${talla} - Cantidad: ${cantidad} - Subtotal: $${totalProducto}</p>
+      </div>
+    `;
+
+    document.getElementById("items").insertAdjacentHTML("beforeend", itemHTML);
+
+    const totalActual = parseFloat(document.getElementById("total").textContent);
+    const nuevoTotal = (totalActual + parseFloat(totalProducto)).toFixed(2);
+    document.getElementById("total").textContent = nuevoTotal;
+
+    tallaBtn.classList.remove("selected");
+    producto.querySelector(".cantidad input").value = "0";
+  }
+</script>
+
+</body>
+</html>
