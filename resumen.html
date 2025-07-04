@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Resumen de Pedido</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <h1>Resumen de tu Pedido</h1>
+</header>
+
+<div id="nombre-cliente" class="nombre-cliente-resumen"></div>
+
+<section id="items"></section>
+
+<div id="total-carrito">
+  <strong>Total: S/<span id="total">0.00</span></strong>
+</div>
+
+<div style="text-align: center; margin: 20px;">
+  <button id="limpiar-carrito">🧹 Limpiar carrito</button>
+  <button id="volver-tienda">Volver a la tienda</button>
+</div>
+
+<script>
+  function cargarCarrito() {
+    const items = JSON.parse(localStorage.getItem("pedido")) || [];
+    const contenedor = document.getElementById("items");
+    const nombreCliente = localStorage.getItem("nombreCliente") || "Sin nombre";
+    const nombreDiv = document.getElementById("nombre-cliente");
+    nombreDiv.textContent = `Pedido a nombre de: ${nombreCliente}`;
+
+    let total = 0;
+
+    if (items.length === 0) {
+      contenedor.innerHTML = "<p>No hay productos en el carrito.</p>";
+    } else {
+      contenedor.innerHTML = "";
+      items.forEach(item => {
+        const subtotal = item.precio * item.cantidad;
+        total += subtotal;
+        contenedor.innerHTML += `
+          <div class="carrito-item">
+            <p><strong>${item.nombre}</strong> - Talla: ${item.talla} - Cantidad: ${item.cantidad} - Subtotal: S/${subtotal.toFixed(2)}</p>
+          </div>`;
+      });
+    }
+
+    document.getElementById("total").textContent = total.toFixed(2);
+  }
+
+  function limpiarCarrito() {
+    localStorage.removeItem("pedido");
+    localStorage.removeItem("nombreCliente");
+    cargarCarrito();
+  }
+
+  document.getElementById("limpiar-carrito").addEventListener("click", limpiarCarrito);
+
+  document.getElementById("volver-tienda").addEventListener("click", () => {
+    location.href = "index.html";
+  });
+
+  window.onload = cargarCarrito;
+</script>
+
+<style>
+  #volver-tienda {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+
+  #volver-tienda:hover {
+    background-color: #0056b3;
+  }
+</style>
+
+</body>
+</html>

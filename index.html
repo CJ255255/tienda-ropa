@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tienda de Ropa con Carrito</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <h1>MININO FASHION</h1>
+</header>
+
+<section class="productos">
+
+  <div class="producto" data-nombre="Camisa Blanca" data-precio="20.00">
+    <img src="https://via.placeholder.com/200x250?text=Camisa+1" alt="Camisa Blanca" />
+    <h3>Camisa Blanca</h3>
+    <p>S/20.00</p>
+    <div class="tallas">
+      <strong>Talla:</strong><br />
+      <button onclick="seleccionarTalla(this)">S</button>
+      <button onclick="seleccionarTalla(this)">M</button>
+      <button onclick="seleccionarTalla(this)">L</button>
+      <button onclick="seleccionarTalla(this)">XL</button>
+    </div>
+    <div class="cantidad">
+      <button onclick="cambiarCantidad(this, -1)">-</button>
+      <input type="text" value="0" readonly />
+      <button onclick="cambiarCantidad(this, 1)">+</button>
+    </div>
+    <button class="boton-listo" onclick="agregarIndividual(this)">Listo</button>
+    <div class="mensaje-agregado">Agregado al carrito</div>
+  </div>
+
+  <div class="producto" data-nombre="Camisa Azul" data-precio="22.00">
+    <img src="https://via.placeholder.com/200x250?text=Camisa+2" alt="Camisa Azul" />
+    <h3>Camisa Azul</h3>
+    <p>S/22.00</p>
+    <div class="tallas">
+      <strong>Talla:</strong><br />
+      <button onclick="seleccionarTalla(this)">S</button>
+      <button onclick="seleccionarTalla(this)">M</button>
+      <button onclick="seleccionarTalla(this)">L</button>
+      <button onclick="seleccionarTalla(this)">XL</button>
+    </div>
+    <div class="cantidad">
+      <button onclick="cambiarCantidad(this, -1)">-</button>
+      <input type="text" value="0" readonly />
+      <button onclick="cambiarCantidad(this, 1)">+</button>
+    </div>
+    <button class="boton-listo" onclick="agregarIndividual(this)">Listo</button>
+    <div class="mensaje-agregado">Agregado al carrito</div>
+  </div>
+
+  <div class="producto" data-nombre="Pantalón Negro" data-precio="30.00">
+    <img src="https://via.placeholder.com/200x250?text=Pantalon+1" alt="Pantalón Negro" />
+    <h3>Pantalón Negro</h3>
+    <p>S/30.00</p>
+    <div class="tallas">
+      <strong>Talla:</strong><br />
+      <button onclick="seleccionarTalla(this)">S</button>
+      <button onclick="seleccionarTalla(this)">M</button>
+      <button onclick="seleccionarTalla(this)">L</button>
+      <button onclick="seleccionarTalla(this)">XL</button>
+    </div>
+    <div class="cantidad">
+      <button onclick="cambiarCantidad(this, -1)">-</button>
+      <input type="text" value="0" readonly />
+      <button onclick="cambiarCantidad(this, 1)">+</button>
+    </div>
+    <button class="boton-listo" onclick="agregarIndividual(this)">Listo</button>
+    <div class="mensaje-agregado">Agregado al carrito</div>
+  </div>
+
+  <div class="producto" data-nombre="Vestido Rojo" data-precio="35.00">
+    <img src="https://via.placeholder.com/200x250?text=Vestido+1" alt="Vestido Rojo" />
+    <h3>Vestido Rojo</h3>
+    <p>S/35.00</p>
+    <div class="tallas">
+      <strong>Talla:</strong><br />
+      <button onclick="seleccionarTalla(this)">S</button>
+      <button onclick="seleccionarTalla(this)">M</button>
+      <button onclick="seleccionarTalla(this)">L</button>
+      <button onclick="seleccionarTalla(this)">XL</button>
+    </div>
+    <div class="cantidad">
+      <button onclick="cambiarCantidad(this, -1)">-</button>
+      <input type="text" value="0" readonly />
+      <button onclick="cambiarCantidad(this, 1)">+</button>
+    </div>
+    <button class="boton-listo" onclick="agregarIndividual(this)">Listo</button>
+    <div class="mensaje-agregado">Agregado al carrito</div>
+  </div>
+
+</section>
+
+<section style="text-align: center; margin: 40px 0;">
+  <label for="nombreCliente"><strong>Pedido a nombre de:</strong></label><br />
+  <input type="text" id="nombreCliente" name="nombreCliente" placeholder="Escribe tu nombre aquí" style="padding: 8px; width: 250px;" />
+</section>
+
+<div style="text-align: center; margin: 30px;">
+  <button onclick="guardarNombreYRedirigir()">Ver resumen de pedido</button>
+</div>
+
+<footer>
+  <p>© 2025 Tienda de Ropa Virtual - Todos los derechos reservados.</p>
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>
